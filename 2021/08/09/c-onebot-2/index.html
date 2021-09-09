@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="一个基于Python的简易PCQQ协议库, DawnNights&#39;s blog">
+    <meta name="keywords" content="c语言实现一个正向ws的onebot插件[2], DawnNights&#39;s blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>一个基于Python的简易PCQQ协议库 | DawnNights&#39;s blog</title>
+    <title>c语言实现一个正向ws的onebot插件[2] | DawnNights&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,12 +254,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">一个基于Python的简易PCQQ协议库</h1>
+                    <h1 class="description center-align post-title">c语言实现一个正向ws的onebot插件[2]</h1>
                 </div>
             </div>
         </div>
@@ -375,16 +375,20 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/onebot/">
+                                <span class="chip bg-color">onebot</span>
+                            </a>
+                        
+                            <a href="/tags/c%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">c语言</span>
+                            </a>
+                        
                             <a href="/tags/%E7%BC%96%E7%A8%8B/">
                                 <span class="chip bg-color">编程</span>
                             </a>
                         
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
-                            </a>
-                        
-                            <a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">
-                                <span class="chip bg-color">qq机器人</span>
+                            <a href="/tags/websocket/">
+                                <span class="chip bg-color">websocket</span>
                             </a>
                         
                     </div>
@@ -399,7 +403,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-09-09
+                    2021-08-09
                 </div>
                 
 
@@ -420,98 +424,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>如题，这是一个使用python3标准库编写的简易pcqq协议库，萌新代码写的很烂，大佬请多多包涵</p>
-<p>你可以使用<code>pip install py-pcqq</code>来安装这个库，并在代码中使用<code>import pcqq</code>导入，该项目开源于<a target="_blank" rel="noopener" href="https://github.com/DawnNights/py-pcqq">Github</a></p>
-<p>请各位大佬给个star吧，求求惹QAQ</p>
-<h3 id="已实现功能"><a href="#已实现功能" class="headerlink" title="已实现功能"></a>已实现功能</h3><h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><ul>
-<li><input checked="" disabled="" type="checkbox"> 扫码登录</li>
-<li><input checked="" disabled="" type="checkbox"> 退出登录</li>
-</ul>
-<h4 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h4><ul>
-<li><input checked="" disabled="" type="checkbox"> At</li>
-<li><input checked="" disabled="" type="checkbox"> 文本</li>
-<li><input checked="" disabled="" type="checkbox"> 表情</li>
-<li><input checked="" disabled="" type="checkbox"> Xml卡片</li>
-</ul>
-<h4 id="接收消息"><a href="#接收消息" class="headerlink" title="接收消息"></a>接收消息</h4><ul>
-<li><input checked="" disabled="" type="checkbox"> At</li>
-<li><input checked="" disabled="" type="checkbox"> 文本</li>
-<li><input checked="" disabled="" type="checkbox"> 图片</li>
-<li><input checked="" disabled="" type="checkbox"> 表情</li>
-</ul>
-<h1 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h1><h4 id="创建机器人对象"><a href="#创建机器人对象" class="headerlink" title="创建机器人对象"></a>创建机器人对象</h4><ol>
-<li><p>创建一个pcqq.QQBot类的实例化对象，通过扫码完成机器人的登录</p>
-</li>
-<li><p>使用前请在手机QQ的<code>设置</code>-&gt;<code>账号安全</code>-&gt;<code>登录设备管理</code>中关闭<code>登录保护</code></p>
-</li>
-<li><p>调用对象的<code>ExitLogin</code>方法退出登录</p>
-<h4 id="编写机器人功能"><a href="#编写机器人功能" class="headerlink" title="编写机器人功能"></a>编写机器人功能</h4></li>
-</ol>
-<p>通过创建pcqq.Plugin类的子类，并重写match方法和handle方法来编写机器人的功能</p>
-<table>
-<thead>
-<tr>
-<th>内置方法</th>
-<th>功能</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>send_msg</td>
-<td>发送消息</td>
-<td>向接收群/接收用户发送消息内容</td>
-</tr>
-<tr>
-<td>send_group_msg</td>
-<td>发送群聊消息</td>
-<td>向指定群发送消息内容</td>
-</tr>
-<tr>
-<td>send_private_msg</td>
-<td>发送私聊消息</td>
-<td>向指定用户发送消息内容</td>
-</tr>
-<tr>
-<td>on_reg_match</td>
-<td>正则匹配消息</td>
-<td>详见on_reg_match方法注释</td>
-</tr>
-<tr>
-<td>on_cmd_match</td>
-<td>命令匹配消息</td>
-<td>详见on_cmd_match方法注释</td>
-</tr>
-<tr>
-<td>on_full_match</td>
-<td>完全匹配消息</td>
-<td>详见on_full_match方法注释</td>
-</tr>
-</tbody></table>
-<h4 id="低配CQ之PQ码"><a href="#低配CQ之PQ码" class="headerlink" title="低配CQ之PQ码"></a>低配CQ之PQ码</h4><table>
-<thead>
-<tr>
-<th>PQ 码</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[PQ:at,qq=<code>对方QQ</code>]</td>
-<td>@对方</td>
-</tr>
-<tr>
-<td>[PQ:face,id=<code>表情ID</code>]</td>
-<td>发送QQ 表情</td>
-</tr>
-<tr>
-<td>[PQ:xml,file=<code>xml代码</code>]</td>
-<td>发送XML卡片</td>
-</tr>
-<tr>
-<td>[PQ:music,title=<code>标题</code>,author=<code>歌手</code>,url=<code>跳转链接</code>,audio=<code>音频链接</code>,cover=<code>封面链接</code>]</td>
-<td>分享自定义音乐</td>
-</tr>
-</tbody></table>
-<h4 id="一个简单的小案例"><a href="#一个简单的小案例" class="headerlink" title="一个简单的小案例"></a>一个简单的小案例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pcqq</span><br><span class="line"></span><br><span class="line">class Hello(pcqq.Plugin):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class ReRead(pcqq.Plugin):</span><br><span class="line">    def match(self) -&gt; bool:</span><br><span class="line">        return self.on_reg_match(&quot;^复读(.+)$&quot;)</span><br><span class="line">    def handle(self):</span><br><span class="line">        self.send_msg(self.state[&quot;regex_matched&quot;][0])</span><br><span class="line">    </span><br><span class="line">class Game(pcqq.Plugin):</span><br><span class="line">    def match(self) -&gt; bool:</span><br><span class="line">        return self.on_cmd_match(&quot;猜拳&quot;, &quot;你要出什么手势呢?&quot;)</span><br><span class="line">    </span><br><span class="line">    def handle(self):</span><br><span class="line">        point = [&quot;剪刀&quot;,&quot;石头&quot;,&quot;布&quot;]</span><br><span class="line">        winPoint = [(&quot;剪刀&quot;,&quot;石头&quot;),(&quot;石头&quot;,&quot;布&quot;),(&quot;布&quot;,&quot;剪刀&quot;)]</span><br><span class="line"></span><br><span class="line">        if self.state[&quot;matched&quot;] in point:</span><br><span class="line">            result = (__import__(&quot;random&quot;).choice(point),self.state[&quot;matched&quot;])</span><br><span class="line">            if result[0] == result[1]:</span><br><span class="line">                self.send_msg(&quot;机器人出&#123;0&#125;，您出&#123;1&#125;，是平局&quot;.format(*result))</span><br><span class="line">            elif result in winPoint:</span><br><span class="line">                self.send_msg(&quot;机器人出&#123;0&#125;，您出&#123;1&#125;，您赢了&quot;.format(*result))</span><br><span class="line">            else:</span><br><span class="line">                self.send_msg(&quot;机器人出&#123;0&#125;，您出&#123;1&#125;，您输了&quot;.format(*result))</span><br><span class="line"></span><br><span class="line">bot = pcqq.QQBot()</span><br><span class="line">bot.RunBot()</span><br></pre></td></tr></table></figure>
+                <p>想要做好一个onebot插件，还需要完善这个WebSocket客户端的收发数据功能</p>
+<p>Project: <a target="_blank" rel="noopener" href="https://github.com/DawnNights/badbot">https://github.com/DawnNights/badbot</a></p>
+<h3 id="实现数据的发送与接收"><a href="#实现数据的发送与接收" class="headerlink" title="实现数据的发送与接收"></a>实现数据的发送与接收</h3><p>在网上参考了一些关于WebSocket数据包解析与构造的帖子与源码后，我写了一份简单的Ws收发功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">0                   1                   2                   3</span><br><span class="line"> 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</span><br><span class="line">+-+-+-+-+-------+-+-------------+-------------------------------+</span><br><span class="line">|F|R|R|R| opcode|M| Payload len |    Extended payload length    |</span><br><span class="line">|I|S|S|S|  (4)  |A|     (7)     |             (16/64)           |</span><br><span class="line">|N|V|V|V|       |S|             |   (<span class="keyword">if</span> payload len==126/127)   |</span><br><span class="line">| |1|2|3|       |K|             |                               |</span><br><span class="line">+-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +</span><br><span class="line">|     Extended payload length continued, <span class="keyword">if</span> payload len == 127  |</span><br><span class="line">+ - - - - - - - - - - - - - - - +-------------------------------+</span><br><span class="line">|                               |Masking-key, <span class="keyword">if</span> MASK <span class="built_in">set</span> to 1  |</span><br><span class="line">+-------------------------------+-------------------------------+</span><br><span class="line">| Masking-key (continued)       |          Payload Data         |</span><br><span class="line">+-------------------------------- - - - - - - - - - - - - - - - +</span><br><span class="line">:                     Payload Data continued ...                :</span><br><span class="line">+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +</span><br><span class="line">|                     Payload Data continued ...                |</span><br><span class="line">+---------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-Ws发送数据"><a href="#1-Ws发送数据" class="headerlink" title="1. Ws发送数据"></a>1. Ws发送数据</h5><p>按照onebot标准，我们收发的数据均属于OPCODE_TEXT格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void WsSend(int *ws, char sendData[])</span><br><span class="line">&#123;</span><br><span class="line">    short dataLen = strlen(sendData);</span><br><span class="line">    char realData[dataLen+8];</span><br><span class="line">    realData[0] = 1&lt;&lt;<span class="string">7;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;6;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;5;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;4;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 1;</span></span><br><span class="line"><span class="string">    realData[1] = 1&lt;&lt;7</span>;</span><br><span class="line">    realData[1] = realData[1] | 126; </span><br><span class="line">    </span><br><span class="line">    char temps[2];</span><br><span class="line">    memcpy(temps, (char*)&amp;dataLen, sizeof(short));</span><br><span class="line">    realData[2] = temps[1];</span><br><span class="line">    realData[3] = temps[0];</span><br><span class="line"></span><br><span class="line">    realData[4] = 1;</span><br><span class="line">    realData[5] = 1;</span><br><span class="line">    realData[6] = 1;</span><br><span class="line">    realData[7] = 1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (size_t i = 0; i &lt; dataLen; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        realData[i+8] = sendData[i] ^ 1;</span><br><span class="line">    &#125;</span><br><span class="line">    send(*ws, realData, dataLen+8, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-Ws接收数据"><a href="#2-Ws接收数据" class="headerlink" title="2. Ws接收数据"></a>2. Ws接收数据</h5><p>在接收数据的上可以偷个小小的懒，onebot所发送的数据包并未进行掩码加密，打印出来便是Json类型的OPCODE_TEXT，我们可以直接将其解析为cJSON指针</p>
+<p>注: cJSON是C语言解析Json数据的第三方库，需要手动下载引入头文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cJSON * WsRecv(int *ws)</span><br><span class="line">&#123;</span><br><span class="line">    char src[1024*5];</span><br><span class="line">    int srcSize = recv(*ws, src, 1024*5, 0);</span><br><span class="line">    int idx = strchr(src, <span class="string">&#x27;&#123;&#x27;</span>) - src;</span><br><span class="line">    char dest[srcSize-idx];</span><br><span class="line">    memcpy(dest, src+idx, srcSize-idx);</span><br><span class="line">    <span class="built_in">return</span> cJSON_Parse(dest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -537,7 +460,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dawnnights.github.io/2021/09/09/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%AE%80%E6%98%93PCQQ%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0/">https://dawnnights.github.io/2021/09/09/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%AE%80%E6%98%93PCQQ%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0/</a>
+                    <a href="https://dawnnights.github.io/2021/08/09/c-onebot-2/">https://dawnnights.github.io/2021/08/09/c-onebot-2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,16 +498,20 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/onebot/">
+                                    <span class="chip bg-color">onebot</span>
+                                </a>
+                            
+                                <a href="/tags/c%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">c语言</span>
+                                </a>
+                            
                                 <a href="/tags/%E7%BC%96%E7%A8%8B/">
                                     <span class="chip bg-color">编程</span>
                                 </a>
                             
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
-                                </a>
-                            
-                                <a href="/tags/qq%E6%9C%BA%E5%99%A8%E4%BA%BA/">
-                                    <span class="chip bg-color">qq机器人</span>
+                                <a href="/tags/websocket/">
+                                    <span class="chip bg-color">websocket</span>
                                 </a>
                             
                         </div>
@@ -630,12 +557,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/09/09/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E7%AE%80%E6%98%93PCQQ%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0/">
+                <a href="/2021/09/09/py-pcqq/">
                     <div class="card-image">
                         
                         
@@ -651,9 +577,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-09
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -662,7 +588,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -689,13 +614,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/09/c%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%90%91ws%E7%9A%84onebot%E6%8F%92%E4%BB%B6%5B2%5D/">
+                <a href="/2021/08/03/c-onebot-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="c语言实现一个正向ws的onebot插件[2]">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="c语言实现一个正向ws的onebot插件[1]">
                         
-                        <span class="card-title">c语言实现一个正向ws的onebot插件[2]</span>
+                        <span class="card-title">c语言实现一个正向ws的onebot插件[1]</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -706,7 +631,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-03
                             </span>
                         <span class="publish-author">
                             
