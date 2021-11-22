@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>解密刺猬猫轻小说APP响应数据 - DawnNights&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="最近入坑了刺猬猫轻小说，于是乎想给自己喜欢作品的QQ书群内添加一个报更机器人。
+原定想法是抓包web网站上的接口和数据来实现功能，可惜网站上的信息不全，一些小说无法找到，便只好将目光投向了刺猬猫的A,"> 
+    <meta name="author" content="DawnNights"> 
+    <link rel="alternative" href="atom.xml" title="DawnNights&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.jpg"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">DawnNights&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://dawnnights.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">解密刺猬猫轻小说APP响应数据</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">解密刺猬猫轻小说APP响应数据</h1>
+        <div class="stuff">
+            <span>十一月 21, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>最近入坑了<a target="_blank" rel="noopener" href="https://www.ciweimao.com/">刺猬猫轻小说</a>，于是乎想给自己喜欢作品的QQ书群内添加一个报更机器人。</p>
+<p>原定想法是抓包web网站上的接口和数据来实现功能，可惜网站上的信息不全，一些小说无法找到，便只好将目光投向了刺猬猫的APP。</p>
+<p>我在电脑上使用<a target="_blank" rel="noopener" href="https://www.yeshen.com/">夜神模拟器</a>以及<a target="_blank" rel="noopener" href="http://zj.dh978.com/fiddler_4911.zip?key=eccc039c42afe9b9e28f6ff0df3ff54a">Fiddler</a>来抓包app的接口请求，随便点开一条抓包信息，可以看出响应数据并非明文，而是经过了某种加密后的base64编码。</p>
+<p><img src="/data/0.png" alt="network_info"></p>
+<p>显然，想要得到明文，就要知道app解密响应数据的具体代码，这对于我这种第一次进行app爬虫的萌新无疑是一次有意思的经历。</p>
+<hr>
+<h1 id="反编译刺猬猫APP"><a href="#反编译刺猬猫APP" class="headerlink" title="反编译刺猬猫APP"></a>反编译刺猬猫APP</h1><p>下载刺猬猫app的安装包（即apk文件），将其后缀改成zip，解压，得到以下目录结构。</p>
+<p><img src="/data/1.png" alt="network_info"></p>
+<p>在目录中可以看见classes.dex和classes2.dex两个文件，dex文件是Android系统的可执行文件，而目录中两个文件的大小显然有点不对劲。</p>
+<p>将目光投向tencent_stub文件，显然，该apk文件是经过了腾讯御安全的加固，想要反编译出正确的代码，就要脱掉腾讯乐固的这一层壳。</p>
+<p>我在模拟器中安装了<code>xposed框架</code>以及<code>反射大师</code>模块，成功绕过加固脱出了原本的dex文件，并通过jadx转换成具体的java项目。</p>
+<p><img src="/data/2.png" alt="project_directory"></p>
+<hr>
+<h1 id="寻找解密模块"><a href="#寻找解密模块" class="headerlink" title="寻找解密模块"></a>寻找解密模块</h1><p>考虑到接口返回的很大可能是json数据，我便通过jadx的搜索功能查找项目中有关JSONObject的代码，随后一行代码引起了我的注意: </p>
+<p><code>JSONObject jSONObject = new JSONObject(new ParseKsy().decrypt(str));</code></p>
+<p>通过观察，我确定这个ParseKsy便是用于解密响应数据的封装类，并单击定位至定义处</p>
+<p><img src="/data/3.png" alt="parseksy_code"></p>
+<p>观察该类的变量定义以及初始化代码，可以确定响应数据采用的是<code>AES</code>加密，加密模式为<code>CBC</code>，密匙为<code>zG2nSeEfSHfvTCHy5LCcqtBbQehKNLXn</code>字符串<code>SHA-256</code>加密后的值，偏移量为<code>0000000000000000</code>。</p>
+<hr>
+<h1 id="编写解密代码"><a href="#编写解密代码" class="headerlink" title="编写解密代码"></a>编写解密代码</h1><p>出于个人爱好，我使用Go语言编写了<code>ParseKsy</code>解密函数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;crypto/aes&quot;</span></span><br><span class="line">	<span class="string">&quot;crypto/cipher&quot;</span></span><br><span class="line">	<span class="string">&quot;crypto/sha256&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/base64&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">base64Decode</span><span class="params">(data []<span class="keyword">byte</span>)</span> <span class="params">(dst []<span class="keyword">byte</span>)</span></span> &#123;</span><br><span class="line">	length := base64.StdEncoding.DecodedLen(<span class="built_in">len</span>(data))</span><br><span class="line">	dst = <span class="built_in">make</span>([]<span class="keyword">byte</span>, length)</span><br><span class="line">	idx, _ := base64.StdEncoding.Decode(dst, data)</span><br><span class="line">	dst = dst[:idx]</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">aesDecrypt</span><span class="params">(data, key, iv []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">	block, _ := aes.NewCipher(key)</span><br><span class="line">	blockMode := cipher.NewCBCDecrypter(block, iv)</span><br><span class="line">	result := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="built_in">len</span>(data))</span><br><span class="line">	blockMode.CryptBlocks(result, data)</span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sha256Encode</span><span class="params">(src []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">	sha := sha256.New()</span><br><span class="line">	sha.Write(src)</span><br><span class="line">	<span class="keyword">return</span> sha.Sum(<span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ParseKsy</span><span class="params">(data []<span class="keyword">byte</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(aesDecrypt(</span><br><span class="line">		base64Decode(data),</span><br><span class="line">		sha256Encode([]<span class="keyword">byte</span>(<span class="string">`zG2nSeEfSHfvTCHy5LCcqtBbQehKNLXn`</span>)),</span><br><span class="line">		<span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">16</span>),</span><br><span class="line">	))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试一下代码，成功将接口响应数据解密为json数据</p>
+<p><img src="/data/4.png" alt="test_mycode"></p>
+<hr>
+<p><strong>遇到的坑</strong></p>
+<blockquote>
+<ul>
+<li>安装包经过腾讯御安全加固，需要进行脱壳</li>
+<li>代码中有一些内容是经历了base64编码的，用函数解密来隐藏具体代码<br>(如将”txt_content”编码成”dHh0X2NvbnRlbnQ=”，害我找不到”txt_content”的位置)</li>
+<li>小说具体章节内容需要再AES解密一次，密匙为<code>command</code>参数SHA-256加密后的数据</li>
+</ul>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"react":{"opacity":0.7}}});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
