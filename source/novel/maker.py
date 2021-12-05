@@ -19,10 +19,11 @@ html = '''<html>
     <div class="yuedu Content_Frame" style="margin-top:0.4rem;">
         <div style="text-indent: 2em;">
             %s
+            <br><br><br><br><br><br><br>
         </div>
     </div>
 </body>
-
+<div class="bottom_menu"></div>
 </html>'''
 
 for path in os.listdir(os.getcwd()):
