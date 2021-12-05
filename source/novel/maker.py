@@ -11,7 +11,7 @@ html = '''<html>
 
 <body>
     <a name="top"></a>
-    <ul class="menu_top_list book_view_top">
+    <ul class="menu_top_list book_view_top" style="top: -10px;height: 50px;">
         <li><a href="javascript:history.back()">返回</a></li>
         <li>%s</li>
         <li></li>
