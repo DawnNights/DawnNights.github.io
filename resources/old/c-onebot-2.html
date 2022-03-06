@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="礼物～前篇, DawnNights&#39;s blog">
+    <meta name="keywords" content="c语言实现一个正向ws的onebot插件[2], DawnNights&#39;s blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>礼物～前篇 | DawnNights&#39;s blog</title>
+    <title>c语言实现一个正向ws的onebot插件[2] | DawnNights&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -96,12 +96,45 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/friends" class="waves-effect waves-light">
+    <a href="/#" class="waves-effect waves-light">
+
       
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
       
       <span>友链</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://blog.kanri.top/">
+          
+          <span>鈴木観理</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://www.wdvxdr.com/">
+          
+          <span>wdvxdr</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://xn--cjrq8lbyi02cyu8h.com/">
+          
+          <span>化鼠球</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="http://www.fcall.cc/">
+          
+          <span>风尘</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -166,12 +199,48 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/friends" class="waves-effect waves-light">
+		<a href="javascript:;">
 			
-			    <i class="fa-fw fas fa-address-book"></i>
+				<i class="fa-fw fas fa-address-book"></i>
 			
 			友链
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
 		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://blog.kanri.top/ " style="margin-left:75px">
+				  
+		          <span>鈴木観理</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://www.wdvxdr.com/ " style="margin-left:75px">
+				  
+		          <span>wdvxdr</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://xn--cjrq8lbyi02cyu8h.com/ " style="margin-left:75px">
+				  
+		          <span>化鼠球</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="http://www.fcall.cc/ " style="margin-left:75px">
+				  
+		          <span>风尘</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -254,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">礼物～前篇</h1>
+                    <h1 class="description center-align post-title">c语言实现一个正向ws的onebot插件[2]</h1>
                 </div>
             </div>
         </div>
@@ -373,9 +442,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -387,7 +472,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-12-09
+                    2021-08-09
                 </div>
                 
 
@@ -408,109 +493,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>希维达神圣学院，冰琳与菲莉斯的寝室内。</p>
+                <p>想要做好一个onebot插件，还需要完善这个WebSocket客户端的收发数据功能</p>
+<p>Project: <a target="_blank" rel="noopener" href="https://github.com/DawnNights/badbot">https://github.com/DawnNights/badbot</a></p>
+<h3 id="实现数据的发送与接收"><a href="#实现数据的发送与接收" class="headerlink" title="实现数据的发送与接收"></a>实现数据的发送与接收</h3><p>在网上参考了一些关于WebSocket数据包解析与构造的帖子与源码后，我写了一份简单的Ws收发功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">0                   1                   2                   3</span><br><span class="line"> 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1</span><br><span class="line">+-+-+-+-+-------+-+-------------+-------------------------------+</span><br><span class="line">|F|R|R|R| opcode|M| Payload len |    Extended payload length    |</span><br><span class="line">|I|S|S|S|  (4)  |A|     (7)     |             (16/64)           |</span><br><span class="line">|N|V|V|V|       |S|             |   (<span class="keyword">if</span> payload len==126/127)   |</span><br><span class="line">| |1|2|3|       |K|             |                               |</span><br><span class="line">+-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +</span><br><span class="line">|     Extended payload length continued, <span class="keyword">if</span> payload len == 127  |</span><br><span class="line">+ - - - - - - - - - - - - - - - +-------------------------------+</span><br><span class="line">|                               |Masking-key, <span class="keyword">if</span> MASK <span class="built_in">set</span> to 1  |</span><br><span class="line">+-------------------------------+-------------------------------+</span><br><span class="line">| Masking-key (continued)       |          Payload Data         |</span><br><span class="line">+-------------------------------- - - - - - - - - - - - - - - - +</span><br><span class="line">:                     Payload Data continued ...                :</span><br><span class="line">+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +</span><br><span class="line">|                     Payload Data continued ...                |</span><br><span class="line">+---------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
 
-<p>“神经勇者，你的胸板硌到我了。”菲莉斯躺在床上，不满的向压在自己身上的娇小少女抱怨道。</p>
+<h5 id="1-Ws发送数据"><a href="#1-Ws发送数据" class="headerlink" title="1. Ws发送数据"></a>1. Ws发送数据</h5><p>按照onebot标准，我们收发的数据均属于OPCODE_TEXT格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void WsSend(int *ws, char sendData[])</span><br><span class="line">&#123;</span><br><span class="line">    short dataLen = strlen(sendData);</span><br><span class="line">    char realData[dataLen+8];</span><br><span class="line">    realData[0] = 1&lt;&lt;<span class="string">7;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;6;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;5;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 0&lt;&lt;4;</span></span><br><span class="line"><span class="string">    realData[0] = realData[0] | 1;</span></span><br><span class="line"><span class="string">    realData[1] = 1&lt;&lt;7</span>;</span><br><span class="line">    realData[1] = realData[1] | 126; </span><br><span class="line">    </span><br><span class="line">    char temps[2];</span><br><span class="line">    memcpy(temps, (char*)&amp;dataLen, sizeof(short));</span><br><span class="line">    realData[2] = temps[1];</span><br><span class="line">    realData[3] = temps[0];</span><br><span class="line"></span><br><span class="line">    realData[4] = 1;</span><br><span class="line">    realData[5] = 1;</span><br><span class="line">    realData[6] = 1;</span><br><span class="line">    realData[7] = 1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (size_t i = 0; i &lt; dataLen; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        realData[i+8] = sendData[i] ^ 1;</span><br><span class="line">    &#125;</span><br><span class="line">    send(*ws, realData, dataLen+8, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>“要你管啊！”冰琳撇了撇小嘴，一口轻轻咬在了菲莉斯的肩头。</p>
-
-<p>“咱愿意和你这个蠢货魔王在一起已经很给你面子了，还想着得寸进尺。”</p>
-
-<p>“咦，明明不是你先…呜哇，好痛，给我松嘴啊。”</p>
-
-<p>“哼，你这个魔王也不过如此嘛，连咱的攻击都防不住。”冰琳松开嘴来，打断了菲莉斯刚刚要说的话。</p>
-
-<p>“竟敢小看本王！”</p>
-
-<p>“难道不是…咿呀！”</p>
-
-<p>被戳到自尊心的菲莉斯骤然一个翻身，将原本压在上方的冰琳转到了自己的身边。同时脸蛋向一凑，两张樱唇瞬间贴在了一起。</p>
-
-<p>菲莉斯粗暴地向冰琳索取着，体魄上的差距使得冰琳没有任何反抗的余地。</p>
-
-<p>“唔唔唔——”</p>
-
-<p>很快，冰琳便感到自己有些喘不过气，可爱的足趾微微蜷起，四肢如同八爪鱼一样紧紧搂着菲莉斯的身体。</p>
-
-<p>虽然在以前这种事情都是由冰琳主导的，但过了这么久，哪怕是以菲莉斯的智商也懂得怎么报复回来了。</p>
-
-<p>直到冰琳感受到轻微的窒息感，眼眸中不禁泛起淡淡的泪光，菲莉斯才堪堪结束了这场吻戏。</p>
-
-<p>此时的冰琳脸上挂着两朵淡淡的红晕，一对樱唇显得娇嫩欲滴，不断小口地喘着气。反观菲莉斯却像个没事人一样的，带着三分鄙夷，七分嘲笑的对冰琳道。</p>
-
-<p>“哈哈哈，就这？就这？还勇者呢，这才碰了几下嘴巴就累成这样了。”</p>
-
-<p>“所以说了，别拿你魔王的体质来跟咱比啊…算了，今天就不和你计较了。”</p>
-
-<p>放在平时吃了亏，冰琳肯定是要好好回报一下菲莉斯的，不过今天是个特别的日子。</p>
-
-<p>今天是冰琳的生日，自然也是菲莉斯的生日，虽然像菲莉斯这样的憨憨肯定是记不住自己生日的。</p>
-
-<p>原本冰琳是打算买把魔剑送给菲莉斯的，但身为平民的她显然没有那么多的积蓄，别说昂贵的武器了，连买原材料都钱她都没有。</p>
-
-<p>而其它的东西就更没有拿得出手的了，思来想去，冰琳最后决定…把自己送出去当礼物。</p>
-
-<p>“咱说，今天是你生日对吧。”</p>
-
-<p>“诶，原来今天是本王生日啊？”</p>
-
-<p>“咱就知道。算了，咱这次没有买礼物，所以…”说着，冰琳突然有些扭捏。</p>
-
-<p>沉默片刻，冰琳有些纠结的站起身来，低着脑袋俯视着菲莉斯，声音颤道：“这…这次做的时候，咱允许你在上面。”</p>
-
-<p>说完，冰琳便羞红着脸开始褪去身上的制服。先是贫瘠的小乳鸽，再到光滑如玉的童贞花园，最后是玲珑可爱的小脚丫，将自己彻彻底底的裸露在了菲莉斯的眼前。</p>
-
-<p>“就这一次，下不为例！”冰琳躺倒在床上，身体呈大字状展开。此时的她不复平日里的淡然，雪白的肌肤泛着诱人的潮红，一副任君索取的可爱表情。</p>
-
-<p>事已至此，要是换个正常人早就上去把冰琳透的喵喵叫了，怎么可能像像菲莉斯一样不解风情的愣在原地，思考着现在是个什么情况。</p>
-
-<p>“这不又会是你的诡计吧。”菲莉斯觉得自己的眼里闪烁着睿智的光芒。</p>
-
-<p>所以说这个魔王怎么傻fufu的，感觉脑子有坑的亚子。</p>
-
-<p>“算了，咱不该你这个笨蛋抱有信心的，还是咱主动点吧。”冰琳深感无奈，像她这种不仅把自己打包送上门，还主动引导对方把自己吃干抹净的猎物整个世界怕是找不到第二个吧。</p>
-
-<p>“你也给咱把衣服脱掉！”</p>
-
-<p>相比起冰琳，菲莉斯就直接多了，毫不在意把自己脱得一干二净，一对发育良好的大白兔在冰琳眼前轻轻晃动着。</p>
-
-<p>感受到冰琳灼热的目光，菲莉斯如实道：“这两坨东西总是影响本王拔剑，我要是像你一样轻松就好了。”</p>
-
-<p>咱突然好想履行一下勇者消灭魔王的义务……</p>
-
-<p>温香软玉入怀，冰琳娇小的身体贴在菲莉斯的怀里，两人一同向后倒去。</p>
-
-<p>“你，你是认真的啊。”看着一脸认真的冰琳，哪怕是菲莉斯也意识到了什么，脸色微微潮红。</p>
-
-<p>“总之咱现在是礼物，你做什么都行啦。”冰琳脸上同样泛红，紧闭这眼转过头去。</p>
-
-<p>菲莉斯憨憨的应了一句，一只手攀上了冰琳的小乳鸽。平时她在下面时，冰琳往往就喜欢盯着菲莉斯的两个大白兔揉搓，这次终于轮到了她。</p>
-
-<p>微微突起的小乳鸽盈盈一握，冰琳粉嫩的两朵嫣红在空气微微挺立，引诱得菲莉斯抚上其中一朵，手指轻轻一捏。</p>
-
-<p>“咿呀——”冰琳瞬间挺起腰弓，双足绵软，嘴里止不住的喘着气。</p>
-
-<p>“原来你怕这个啊。”菲莉斯眼前一亮，对抓到了冰琳的把柄很是高兴。</p>
-
-<p>“咱才没有。”羞红脸的冰琳立马抬起一只脚丫对着对方的脸踢去。菲莉斯不躲不闪，一手抓住踢来的娇小玉足。</p>
-
-<p>“哈哈哈，你再踢本王试试啊。”菲莉斯得意地嘲笑道。</p>
-
-<p>于是冰琳的小脚丫被一股怪力摁在了自己的脸旁，另一只则被菲莉斯枕在腿下，两腿大幅度张开，白嫩饱满的童贞花园一览无余。</p>
-
-<p>在内心的爱恋与屈辱下，身为屑萝莉的冰琳猛的一颤，玲珑小嘴中忍不住漏出哼哼唧唧的娇呼，透明粘稠的花蜜从冰琳柔软光滑的禁闭花瓣中缓缓流出。</p>
-
-<p>“喂喂神经勇者，你这是怎么了？”</p>
-
-<p>每次冰琳在上的时候，菲莉斯从来没陷入如此窘境，以至于她无法分辨眼前的状况。</p>
-
-<p>“这些是什么东西，怎么黏糊糊的。”菲莉斯在对方的私处轻轻一抹，手上瞬间沾染了不少粘稠液体，冰琳却是在她的抚摸下娇躯一颤，淫水又从花瓣中喷涌而出。</p>
-
-<p>“唔啊唔啊”冰琳大口喘着气，红眸泛着泪光和情欲，银发无序的披散着，身体不安分的在菲莉斯身上胡乱的蹭着。</p>
-
-<p>“大笨蛋！快点给咱，哇啊啊……”大脑断线的冰琳突然哭出了声。</p>
-
-<p>(未完待续，感谢阅读…当然也可能不续～)</p>
+<h5 id="2-Ws接收数据"><a href="#2-Ws接收数据" class="headerlink" title="2. Ws接收数据"></a>2. Ws接收数据</h5><p>在接收数据的上可以偷个小小的懒，onebot所发送的数据包并未进行掩码加密，打印出来便是Json类型的OPCODE_TEXT，我们可以直接将其解析为cJSON指针</p>
+<p>注: cJSON是C语言解析Json数据的第三方库，需要手动下载引入头文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cJSON * WsRecv(int *ws)</span><br><span class="line">&#123;</span><br><span class="line">    char src[1024*5];</span><br><span class="line">    int srcSize = recv(*ws, src, 1024*5, 0);</span><br><span class="line">    int idx = strchr(src, <span class="string">&#x27;&#123;&#x27;</span>) - src;</span><br><span class="line">    char dest[srcSize-idx];</span><br><span class="line">    memcpy(dest, src+idx, srcSize-idx);</span><br><span class="line">    <span class="built_in">return</span> cJSON_Parse(dest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -536,7 +529,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dawnnights.github.io/source/novel/20211209.html">https://dawnnights.github.io/source/novel/20211209.html</a>
+                    <a href="https://dawnnights.github.io/resources/old/c-onebot-2.html">https://dawnnights.github.io/resources/old/c-onebot-2.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,7 +566,23 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -622,13 +631,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/source/novel/20211209.html">
+                <a href="/resources/old/c-onebot-2.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="礼物～前篇">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="c语言实现一个正向ws的onebot插件[2]">
                         
-                        <span class="card-title">礼物～前篇</span>
+                        <span class="card-title">c语言实现一个正向ws的onebot插件[2]</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -639,7 +648,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
                             </span>
                         <span class="publish-author">
                             
@@ -651,6 +660,26 @@
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
@@ -660,13 +689,13 @@
                 Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/source/novel/20211209.html">
+                <a href="/resources/old/c-onebot-2.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="礼物～前篇">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="c语言实现一个正向ws的onebot插件[2]">
                         
-                        <span class="card-title">礼物～前篇</span>
+                        <span class="card-title">c语言实现一个正向ws的onebot插件[2]</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -677,7 +706,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
                             </span>
                         <span class="publish-author">
                             
@@ -688,6 +717,26 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -880,7 +929,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">DawnNights</a>
